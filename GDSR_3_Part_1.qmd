@@ -1,0 +1,48 @@
+---
+title: "Datentransformation"
+subtitle: "Grundlagen der Datenanalyse und Statistik mit R | WS 2024/25"
+author: "Prof. Dr. Daniel Schnitzlein"
+footer: "GitHub-Repo: <https://github.com/dschnitzlein/GDSR_3_Part_1/>"
+engine: knitr
+format: 
+  live-revealjs:
+    theme: [default, custom.scss]
+    progress: true
+    slide-number: true
+    width: 1400
+    resources: 
+      - data
+    title-slide-attributes:
+      data-background-color: "#2A4D69"
+      data-background-image: "/images/logo.png"
+      data-background-size: "30%"
+      data-background-position: "center right 20px"
+css: custom.css
+editor: visual
+---
+
+{{< include ./_extensions/r-wasm/live/_knitr.qmd >}}
+
+## Was sind R-Pakete?
+
+<br>
+
+::: incremental
+-   R besteht aus einer Basiskomponente, die durch sogenannte R-Pakete erweitert werden kann um bestimmte Aufgaben zu lösen.
+
+-   Das wichtigste Repository für R-Pakete, das Comprehensive R Archive Network (CRAN), listet zur Zeit `21.517` (Oktober 2024) verfügbare Pakete auf (zuzüglich einer Unmenge von Paketen auf Github).
+
+-   Für alle (die meisten) verfügbaren Pakete ist eine umfangreiche Dokumentation verfügbar.
+
+-   Möglichkeiten den Überblick zu behalten:
+
+    -   CRAN Task Views (siehe nächste Seite)
+
+    -   Social Media Posts
+
+    -   R-User Konferenzen (meist auch via YouTube verfügbar) oder
+
+    -   Diskussionen in Foren und/oder GitHub.
+:::
+
+## 

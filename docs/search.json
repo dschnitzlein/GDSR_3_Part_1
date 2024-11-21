@@ -1,0 +1,16 @@
+[
+  {
+    "objectID": "GDSR_3_Part_1.html#was-sind-r-pakete",
+    "href": "GDSR_3_Part_1.html#was-sind-r-pakete",
+    "title": "Datentransformation",
+    "section": "Was sind R-Pakete?",
+    "text": "Was sind R-Pakete?\n\n\n\nR besteht aus einer Basiskomponente, die durch sogenannte R-Pakete erweitert werden kann um bestimmte Aufgaben zu lösen.\nDas wichtigste Repository für R-Pakete, das Comprehensive R Archive Network (CRAN), listet zur Zeit 21.517 (Oktober 2024) verfügbare Pakete auf (zuzüglich einer Unmenge von Paketen auf Github).\nFür alle (die meisten) verfügbaren Pakete ist eine umfangreiche Dokumentation verfügbar.\nMöglichkeiten den Überblick zu behalten:\n\nCRAN Task Views (siehe nächste Seite)\nSocial Media Posts\nR-User Konferenzen (meist auch via YouTube verfügbar) oder\nDiskussionen in Foren und/oder GitHub."
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#section",
+    "href": "GDSR_3_Part_1.html#section",
+    "title": "Datentransformation",
+    "section": "",
+    "text": "GitHub-Repo: https://github.com/dschnitzlein/GDSR_3_Part_1/"
+  }
+]
