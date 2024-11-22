@@ -155,7 +155,7 @@ print(distinct_beispiel, n=100)
 
 ```{webr}
 mutate_beispiel <- mutate(penguins, body_mass_kg=body_mass_g/1000)
-print(mutate_beispiel, n=100)
+summary(mutate_beispiel)
 ```
 
 ## Basis `dplyr`-Funktionen: `select( )`
@@ -183,12 +183,12 @@ print(select_beispiel, n=100)
 
 | Funktion | Beschreibung | Beispiel |
 |------------------------|------------------------|------------------------|
-| `rename( )` | `rename( )` erlaubt es einzelne Variablen umzubenennen. | `rename(penguins, species, weight=body_mass_g)` |
+| `rename( )` | `rename( )` erlaubt es einzelne Variablen umzubenennen. | `rename(penguins, weight=body_mass_g)` |
 
 : <br>
 
 ```{webr}
-rename_beispiel <- rename(penguins, species, weight=body_mass_g)
+rename_beispiel <- rename(penguins, weight=body_mass_g)
 print(rename_beispiel, n=100)
 ```
 
@@ -196,7 +196,7 @@ print(rename_beispiel, n=100)
 
 <br>
 
-Erstellen Sie die Abbildung_1 aus dem Aufgabenblatt neu. Dieses mal nur für Adelie Pinguine und messen Sie bitte `body_mass_g` in kg und `bill_length_mm` in cm. Achten Sie auf die korrekte Achsenbeschriftung.
+Erstellen Sie die Abbildung 1 aus dem Aufgabenblatt II neu. Dieses mal nur für Adelie Pinguine und messen Sie bitte `body_mass_g` in kg und `bill_length_mm` in cm. Achten Sie auf die korrekte Achsenbeschriftung.
 
 ```{webr}
 

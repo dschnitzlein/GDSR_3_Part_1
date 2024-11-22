@@ -74,13 +74,13 @@
     "href": "GDSR_3_Part_1.html#basis-dplyr-funktionen-rename",
     "title": "Datentransformation mit dplyr",
     "section": "Basis dplyr-Funktionen: rename( )",
-    "text": "Basis dplyr-Funktionen: rename( )\n\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\nrename( )\nrename( ) erlaubt es einzelne Variablen umzubenennen.\nrename(penguins, species, weight=body_mass_g)"
+    "text": "Basis dplyr-Funktionen: rename( )\n\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\nrename( )\nrename( ) erlaubt es einzelne Variablen umzubenennen.\nrename(penguins, weight=body_mass_g)"
   },
   {
     "objectID": "GDSR_3_Part_1.html#aufgabe",
     "href": "GDSR_3_Part_1.html#aufgabe",
     "title": "Datentransformation mit dplyr",
     "section": "Aufgabe",
-    "text": "Aufgabe\n\nErstellen Sie die Abbildung_1 aus dem Aufgabenblatt neu. Dieses mal nur für Adelie Pinguine und messen Sie bitte body_mass_g in kg und bill_length_mm in cm. Achten Sie auf die korrekte Achsenbeschriftung.\n\n\n\n\n\n\n\n\n\n\n\nGitHub-Repo: https://github.com/dschnitzlein/GDSR_3_Part_1/"
+    "text": "Aufgabe\n\nErstellen Sie die Abbildung 1 aus dem Aufgabenblatt II neu. Dieses mal nur für Adelie Pinguine und messen Sie bitte body_mass_g in kg und bill_length_mm in cm. Achten Sie auf die korrekte Achsenbeschriftung.\n\n\n\n\n\n\n\n\n\n\n\nGitHub-Repo: https://github.com/dschnitzlein/GDSR_3_Part_1/"
   }
 ]
