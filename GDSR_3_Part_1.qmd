@@ -1,5 +1,5 @@
 ---
-title: "Datentransformation"
+title: "Datentransformation mit dplyr"
 subtitle: "Grundlagen der Datenanalyse und Statistik mit R | WS 2024/25"
 author: "Prof. Dr. Daniel Schnitzlein"
 footer: "GitHub-Repo: <https://github.com/dschnitzlein/GDSR_3_Part_1/>"
@@ -23,26 +23,181 @@ editor: visual
 
 {{< include ./_extensions/r-wasm/live/_knitr.qmd >}}
 
-## Was sind R-Pakete?
+## Das `dplyr` Paket
+
+<br>
+
+:::::: columns
+:::: {.column width="60%"}
+::: incremental
+-   Alle Datenmanipulationen und -transformationen die wir in diesem Abschnitt behandeln können auch in Base R ausgeführt werden.
+
+-   Allerdings stellt das `tidyverse` mit dem `dplyr` Paket ein Werkzeug zur Verfügung, das die Arbeit mit Daten und speziell komplexeren Daten deutlich vereinfacht.
+
+-   Wir nutzen `dplyr` in diesem Kurs mit Datensätzen, die im DataFrame oder Tibble Format vorliegen.
+
+-   `dplyr` kann aber auch mit larger-than-memory Datensätzen z.B. auf AWS (`arrow`) oder Apache Spark (`sparklyr`) zusammenarbeiten.
+
+-   Ebenso steht mit `dbplyr` eine Anbindung an SQL zur Verfügung und via `duckplyr` an DuckDB.
+:::
+::::
+
+::: {.column width="40%"}
+![](images/Bild1.png){fig-align="right"}
+:::
+::::::
+
+## dplyr Cheat-Sheet
+
+[![](images/Bild2.png){fig-align="center" width="771"}](https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf)
+
+## Der Datenanalyse Prozess
+
+<br>
+
+![](images/Bild3.png){fig-align="center"}
+
+## Struktur des Funktionsaufrufs
+
+<br>
 
 <br>
 
 ::: incremental
--   R besteht aus einer Basiskomponente, die durch sogenannte R-Pakete erweitert werden kann um bestimmte Aufgaben zu lösen.
+-   Das `erste Argument` ist immer ein DataFrame/Tibble, also ein Datensatz.
 
--   Das wichtigste Repository für R-Pakete, das Comprehensive R Archive Network (CRAN), listet zur Zeit `21.517` (Oktober 2024) verfügbare Pakete auf (zuzüglich einer Unmenge von Paketen auf Github).
+-   Die weiteren Argumente beschreiben die Spalten die bearbeitet werden sollen (anhand der Variablennamen).
 
--   Für alle (die meisten) verfügbaren Pakete ist eine umfangreiche Dokumentation verfügbar.
+-   Der Output ist immer ein Tibble, also ein Datensatz.
 
--   Möglichkeiten den Überblick zu behalten:
+-   `dplyr` nennt die einzelnen Funktionen Verben (basierend auf einer Grammatik).
 
-    -   CRAN Task Views (siehe nächste Seite)
+-   Da jede Funktion eine Sache speziell gut macht, müssen für komplexere Transformationen mehrere Funktionen verbunden werden.
 
-    -   Social Media Posts
+-   Dafür steht uns später der Pipe Operator zur Verfügung.
 
-    -   R-User Konferenzen (meist auch via YouTube verfügbar) oder
-
-    -   Diskussionen in Foren und/oder GitHub.
+-   **Wichtig:** `dplyr`-Funktionen führen die jeweilige Operation aus, erstellen eine neues Tibble und geben dieses aus. Es werden nie Änderungen an dem Quelldatensatz durchgeführt. Um die Änderungen zu speichern, muss man entweder den alten Datensatz mit dem neuen Datensatz überschreiben, oder ein neues Objekt anlegen. Beides geht mit dem Assignment Operator \<-.
 :::
 
-## 
+## Datengrundlage für die Beispiele sind wieder die `palmerpenguins`
+
+<br>
+
+```{webr}
+install.packages('palmerpenguins')
+library(palmerpenguins)
+library(dplyr)
+print(penguins, n=100)
+```
+
+## Basis `dplyr`-Funktionen: `filter( )`
+
+<br>
+
+<br>
+
+| Funktion | Beschreibung | Beispiel |
+|------------------------|------------------------|------------------------|
+| `filter( )` | `filter( )` wählt Zeilen auf der Basis des Werts einer Variable aus. | `filter(penguins, species=='Gentoo')` |
+
+<br>
+
+```{webr}
+filter_beispiel <- filter(penguins, species=='Gentoo')
+print(penguins, n=100)
+```
+
+## Basis `dplyr`-Funktionen: `arrange( )`
+
+<br>
+
+<br>
+
+| Funktion | Beschreibung | Beispiel |
+|------------------------|------------------------|------------------------|
+| `arrange( )` | `arrange( )` ändert die Reihenfolge der Zeilen auf Basis des Wertes einer Variable. | `arrange(penguins, body_mass_g)` |
+
+: <br>
+
+```{webr}
+arrange_beispiel <- arrange(penguins, body_mass_g)
+print(arrange_beispiel, n=100)
+```
+
+## Basis `dplyr`-Funktionen: `distinct( )`
+
+<br>
+
+<br>
+
+| Funktion | Beschreibung | Beispiel |
+|------------------------|------------------------|------------------------|
+| `distinct( )` | `distinct( )` findet alle eindeutigen Zeilen (eindeutige Kombination von Variablen) in einem Datensatz. | `distinct(penguins, species, island)` |
+
+: <br>
+
+```{webr}
+distinct_beispiel <- distinct(penguins, species, island)
+print(distinct_beispiel, n=100)
+```
+
+## Basis `dplyr`-Funktionen: `mutate( )`
+
+<br>
+
+<br>
+
+| Funktion | Beschreibung | Beispiel |
+|------------------------|------------------------|------------------------|
+| `mutate( )` | `mutate( )` erstellt neue Variablen (Spalten) die aus den bestehenden berechnet werden. | `mutate(penguins, body_mass_kg=body_mass_g/1000)` |
+
+: <br>
+
+```{webr}
+mutate_beispiel <- mutate(penguins, body_mass_kg=body_mass_g/1000)
+print(mutate_beispiel, n=100)
+```
+
+## Basis `dplyr`-Funktionen: `select( )`
+
+<br>
+
+<br>
+
+| Funktion | Beschreibung | Beispiel |
+|------------------------|------------------------|------------------------|
+| `select( )` | `select( )` erlaubt es einzelne Variablen aus einem DataFrame/Tibble auszuwählen. | `select(penguins, species, body_mass_g)` |
+
+: <br>
+
+```{webr}
+select_beispiel <- select(penguins, species, body_mass_g)
+print(select_beispiel, n=100)
+```
+
+## Basis `dplyr`-Funktionen: `rename( )`
+
+<br>
+
+<br>
+
+| Funktion | Beschreibung | Beispiel |
+|------------------------|------------------------|------------------------|
+| `rename( )` | `rename( )` erlaubt es einzelne Variablen umzubenennen. | `rename(penguins, species, weight=body_mass_g)` |
+
+: <br>
+
+```{webr}
+rename_beispiel <- rename(penguins, species, weight=body_mass_g)
+print(rename_beispiel, n=100)
+```
+
+## Aufgabe
+
+<br>
+
+Erstellen Sie die Abbildung_1 aus dem Aufgabenblatt neu. Dieses mal nur für Adelie Pinguine und messen Sie bitte `body_mass_g` in kg und `bill_length_mm` in cm. Achten Sie auf die korrekte Achsenbeschriftung.
+
+```{webr}
+
+```

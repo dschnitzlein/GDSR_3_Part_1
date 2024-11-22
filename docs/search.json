@@ -1,16 +1,86 @@
 [
   {
-    "objectID": "GDSR_3_Part_1.html#was-sind-r-pakete",
-    "href": "GDSR_3_Part_1.html#was-sind-r-pakete",
-    "title": "Datentransformation",
-    "section": "Was sind R-Pakete?",
-    "text": "Was sind R-Pakete?\n\n\n\nR besteht aus einer Basiskomponente, die durch sogenannte R-Pakete erweitert werden kann um bestimmte Aufgaben zu lösen.\nDas wichtigste Repository für R-Pakete, das Comprehensive R Archive Network (CRAN), listet zur Zeit 21.517 (Oktober 2024) verfügbare Pakete auf (zuzüglich einer Unmenge von Paketen auf Github).\nFür alle (die meisten) verfügbaren Pakete ist eine umfangreiche Dokumentation verfügbar.\nMöglichkeiten den Überblick zu behalten:\n\nCRAN Task Views (siehe nächste Seite)\nSocial Media Posts\nR-User Konferenzen (meist auch via YouTube verfügbar) oder\nDiskussionen in Foren und/oder GitHub."
+    "objectID": "GDSR_3_Part_1.html#das-dplyr-paket",
+    "href": "GDSR_3_Part_1.html#das-dplyr-paket",
+    "title": "Datentransformation mit dplyr",
+    "section": "Das dplyr Paket",
+    "text": "Das dplyr Paket\n\n\n\n\n\nAlle Datenmanipulationen und -transformationen die wir in diesem Abschnitt behandeln können auch in Base R ausgeführt werden.\nAllerdings stellt das tidyverse mit dem dplyr Paket ein Werkzeug zur Verfügung, das die Arbeit mit Daten und speziell komplexeren Daten deutlich vereinfacht.\nWir nutzen dplyr in diesem Kurs mit Datensätzen, die im DataFrame oder Tibble Format vorliegen.\ndplyr kann aber auch mit larger-than-memory Datensätzen z.B. auf AWS (arrow) oder Apache Spark (sparklyr) zusammenarbeiten.\nEbenso steht mit dbplyr eine Anbindung an SQL zur Verfügung und via duckplyr an DuckDB."
   },
   {
-    "objectID": "GDSR_3_Part_1.html#section",
-    "href": "GDSR_3_Part_1.html#section",
-    "title": "Datentransformation",
-    "section": "",
-    "text": "GitHub-Repo: https://github.com/dschnitzlein/GDSR_3_Part_1/"
+    "objectID": "GDSR_3_Part_1.html#dplyr-cheat-sheet",
+    "href": "GDSR_3_Part_1.html#dplyr-cheat-sheet",
+    "title": "Datentransformation mit dplyr",
+    "section": "dplyr Cheat-Sheet",
+    "text": "dplyr Cheat-Sheet"
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#der-datenanalyse-prozess",
+    "href": "GDSR_3_Part_1.html#der-datenanalyse-prozess",
+    "title": "Datentransformation mit dplyr",
+    "section": "Der Datenanalyse Prozess",
+    "text": "Der Datenanalyse Prozess"
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#struktur-des-funktionsaufrufs",
+    "href": "GDSR_3_Part_1.html#struktur-des-funktionsaufrufs",
+    "title": "Datentransformation mit dplyr",
+    "section": "Struktur des Funktionsaufrufs",
+    "text": "Struktur des Funktionsaufrufs\n\n\n\n\nDas erste Argument ist immer ein DataFrame/Tibble, also ein Datensatz.\nDie weiteren Argumente beschreiben die Spalten die bearbeitet werden sollen (anhand der Variablennamen).\nDer Output ist immer ein Tibble, also ein Datensatz.\ndplyr nennt die einzelnen Funktionen Verben (basierend auf einer Grammatik).\nDa jede Funktion eine Sache speziell gut macht, müssen für komplexere Transformationen mehrere Funktionen verbunden werden.\nDafür steht uns später der Pipe Operator zur Verfügung.\nWichtig: dplyr-Funktionen führen die jeweilige Operation aus, erstellen eine neues Tibble und geben dieses aus. Es werden nie Änderungen an dem Quelldatensatz durchgeführt. Um die Änderungen zu speichern, muss man entweder den alten Datensatz mit dem neuen Datensatz überschreiben, oder ein neues Objekt anlegen. Beides geht mit dem Assignment Operator &lt;-."
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#datengrundlage-für-die-beispiele-sind-wieder-die-palmerpenguins",
+    "href": "GDSR_3_Part_1.html#datengrundlage-für-die-beispiele-sind-wieder-die-palmerpenguins",
+    "title": "Datentransformation mit dplyr",
+    "section": "Datengrundlage für die Beispiele sind wieder die palmerpenguins",
+    "text": "Datengrundlage für die Beispiele sind wieder die palmerpenguins"
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#basis-dplyr-funktionen-filter",
+    "href": "GDSR_3_Part_1.html#basis-dplyr-funktionen-filter",
+    "title": "Datentransformation mit dplyr",
+    "section": "Basis dplyr-Funktionen: filter( )",
+    "text": "Basis dplyr-Funktionen: filter( )\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\nfilter( )\nfilter( ) wählt Zeilen auf der Basis des Werts einer Variable aus.\nfilter(penguins, species=='Gentoo')"
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#basis-dplyr-funktionen-arrange",
+    "href": "GDSR_3_Part_1.html#basis-dplyr-funktionen-arrange",
+    "title": "Datentransformation mit dplyr",
+    "section": "Basis dplyr-Funktionen: arrange( )",
+    "text": "Basis dplyr-Funktionen: arrange( )\n\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\narrange( )\narrange( ) ändert die Reihenfolge der Zeilen auf Basis des Wertes einer Variable.\narrange(penguins, body_mass_g)"
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#basis-dplyr-funktionen-distinct",
+    "href": "GDSR_3_Part_1.html#basis-dplyr-funktionen-distinct",
+    "title": "Datentransformation mit dplyr",
+    "section": "Basis dplyr-Funktionen: distinct( )",
+    "text": "Basis dplyr-Funktionen: distinct( )\n\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\ndistinct( )\ndistinct( ) findet alle eindeutigen Zeilen (eindeutige Kombination von Variablen) in einem Datensatz.\ndistinct(penguins, species, island)"
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#basis-dplyr-funktionen-mutate",
+    "href": "GDSR_3_Part_1.html#basis-dplyr-funktionen-mutate",
+    "title": "Datentransformation mit dplyr",
+    "section": "Basis dplyr-Funktionen: mutate( )",
+    "text": "Basis dplyr-Funktionen: mutate( )\n\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\nmutate( )\nmutate( ) erstellt neue Variablen (Spalten) die aus den bestehenden berechnet werden.\nmutate(penguins, body_mass_kg=body_mass_g/1000)"
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#basis-dplyr-funktionen-select",
+    "href": "GDSR_3_Part_1.html#basis-dplyr-funktionen-select",
+    "title": "Datentransformation mit dplyr",
+    "section": "Basis dplyr-Funktionen: select( )",
+    "text": "Basis dplyr-Funktionen: select( )\n\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\nselect( )\nselect( ) erlaubt es einzelne Variablen aus einem DataFrame/Tibble auszuwählen.\nselect(penguins, species, body_mass_g)"
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#basis-dplyr-funktionen-rename",
+    "href": "GDSR_3_Part_1.html#basis-dplyr-funktionen-rename",
+    "title": "Datentransformation mit dplyr",
+    "section": "Basis dplyr-Funktionen: rename( )",
+    "text": "Basis dplyr-Funktionen: rename( )\n\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\nrename( )\nrename( ) erlaubt es einzelne Variablen umzubenennen.\nrename(penguins, species, weight=body_mass_g)"
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#aufgabe",
+    "href": "GDSR_3_Part_1.html#aufgabe",
+    "title": "Datentransformation mit dplyr",
+    "section": "Aufgabe",
+    "text": "Aufgabe\n\nErstellen Sie die Abbildung_1 aus dem Aufgabenblatt neu. Dieses mal nur für Adelie Pinguine und messen Sie bitte body_mass_g in kg und bill_length_mm in cm. Achten Sie auf die korrekte Achsenbeschriftung.\n\n\n\n\n\n\n\n\n\n\n\nGitHub-Repo: https://github.com/dschnitzlein/GDSR_3_Part_1/"
   }
 ]
