@@ -2,85 +2,316 @@
   {
     "objectID": "GDSR_3_Part_1.html#das-dplyr-paket",
     "href": "GDSR_3_Part_1.html#das-dplyr-paket",
-    "title": "Datentransformation mit dplyr",
+    "title": "Datentransformation und Modellierung",
     "section": "Das dplyr Paket",
-    "text": "Das dplyr Paket\n\n\n\n\n\nAlle Datenmanipulationen und -transformationen die wir in diesem Abschnitt behandeln können auch in Base R ausgeführt werden.\nAllerdings stellt das tidyverse mit dem dplyr Paket ein Werkzeug zur Verfügung, das die Arbeit mit Daten und speziell komplexeren Daten deutlich vereinfacht.\nWir nutzen dplyr in diesem Kurs mit Datensätzen, die im DataFrame oder Tibble Format vorliegen.\ndplyr kann aber auch mit larger-than-memory Datensätzen z.B. auf AWS (arrow) oder Apache Spark (sparklyr) zusammenarbeiten.\nEbenso steht mit dbplyr eine Anbindung an SQL zur Verfügung und via duckplyr an DuckDB."
+    "text": "Das dplyr Paket\n\n\n\n\n\nAlle Datenmanipulationen und -transformationen die wir in diesem Abschnitt behandeln, können auch in Base R ausgeführt werden.\nAllerdings stellt das tidyverse mit dem dplyr Paket ein Werkzeug zur Verfügung, das die Arbeit mit Daten und speziell komplexeren Daten deutlich vereinfacht.\nWir nutzen dplyr in diesem Kurs mit Datensätzen, die im DataFrame oder Tibble Format vorliegen.\ndplyr kann aber auch mit larger-than-memory Datensätzen z.B. auf AWS (arrow) oder Apache Spark (sparklyr) zusammenarbeiten.\nEbenso steht mit dbplyr eine Anbindung an SQL zur Verfügung und via duckplyr an DuckDB."
   },
   {
     "objectID": "GDSR_3_Part_1.html#dplyr-cheat-sheet",
     "href": "GDSR_3_Part_1.html#dplyr-cheat-sheet",
-    "title": "Datentransformation mit dplyr",
+    "title": "Datentransformation und Modellierung",
     "section": "dplyr Cheat-Sheet",
     "text": "dplyr Cheat-Sheet"
   },
   {
     "objectID": "GDSR_3_Part_1.html#der-datenanalyse-prozess",
     "href": "GDSR_3_Part_1.html#der-datenanalyse-prozess",
-    "title": "Datentransformation mit dplyr",
+    "title": "Datentransformation und Modellierung",
     "section": "Der Datenanalyse Prozess",
     "text": "Der Datenanalyse Prozess"
   },
   {
     "objectID": "GDSR_3_Part_1.html#struktur-des-funktionsaufrufs",
     "href": "GDSR_3_Part_1.html#struktur-des-funktionsaufrufs",
-    "title": "Datentransformation mit dplyr",
+    "title": "Datentransformation und Modellierung",
     "section": "Struktur des Funktionsaufrufs",
-    "text": "Struktur des Funktionsaufrufs\n\n\n\n\nDas erste Argument ist immer ein DataFrame/Tibble, also ein Datensatz.\nDie weiteren Argumente beschreiben die Spalten die bearbeitet werden sollen (anhand der Variablennamen).\nDer Output ist immer ein Tibble, also ein Datensatz.\ndplyr nennt die einzelnen Funktionen Verben (basierend auf einer Grammatik).\nDa jede Funktion eine Sache speziell gut macht, müssen für komplexere Transformationen mehrere Funktionen verbunden werden.\nDafür steht uns später der Pipe Operator zur Verfügung.\nWichtig: dplyr-Funktionen führen die jeweilige Operation aus, erstellen eine neues Tibble und geben dieses aus. Es werden nie Änderungen an dem Quelldatensatz durchgeführt. Um die Änderungen zu speichern, muss man entweder den alten Datensatz mit dem neuen Datensatz überschreiben, oder ein neues Objekt anlegen. Beides geht mit dem Assignment Operator &lt;-."
+    "text": "Struktur des Funktionsaufrufs\n\n\n\n\nDas erste Argument ist immer ein DataFrame/Tibble, also ein Datensatz.\nDie weiteren Argumente beschreiben die Spalten die bearbeitet werden sollen (anhand der Variablennamen).\nDer Output ist immer ein Tibble, also ein Datensatz.\ndplyr nennt die einzelnen Funktionen Verben (basierend auf einer Grammatik).\nDa jede Funktion eine Sache speziell gut macht, müssen für komplexere Transformationen mehrere Funktionen verbunden werden.\nDafür steht uns der Pipe Operator zur Verfügung. Früher %&gt;% aus dem Paket magrittr (verschiedene Entwicklungen seit Mitte 2012, in verschiedenen Paketen), heute |&gt; aus base R (seit R Version 4.1 im Mai 2021).\nWichtig: dplyr-Funktionen führen die jeweilige Operation aus, erstellen eine neues Tibble und geben dieses aus. Es werden nie Änderungen an dem Quelldatensatz durchgeführt. Um die Änderungen zu speichern, muss man entweder den alten Datensatz mit dem neuen Datensatz überschreiben, oder ein neues Objekt anlegen. Beides geht mit dem Assignment Operator &lt;-."
   },
   {
-    "objectID": "GDSR_3_Part_1.html#datengrundlage-für-die-beispiele-sind-wieder-die-palmerpenguins",
-    "href": "GDSR_3_Part_1.html#datengrundlage-für-die-beispiele-sind-wieder-die-palmerpenguins",
-    "title": "Datentransformation mit dplyr",
-    "section": "Datengrundlage für die Beispiele sind wieder die palmerpenguins",
-    "text": "Datengrundlage für die Beispiele sind wieder die palmerpenguins"
+    "objectID": "GDSR_3_Part_1.html#datengrundlage-für-die-ersten-beispiele-sind-wieder-die-palmerpenguins",
+    "href": "GDSR_3_Part_1.html#datengrundlage-für-die-ersten-beispiele-sind-wieder-die-palmerpenguins",
+    "title": "Datentransformation und Modellierung",
+    "section": "Datengrundlage für die ersten Beispiele sind wieder die palmerpenguins",
+    "text": "Datengrundlage für die ersten Beispiele sind wieder die palmerpenguins"
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#datengrundlage-für-die-ersten-beispiele-sind-wieder-die-palmerpenguins-1",
+    "href": "GDSR_3_Part_1.html#datengrundlage-für-die-ersten-beispiele-sind-wieder-die-palmerpenguins-1",
+    "title": "Datentransformation und Modellierung",
+    "section": "Datengrundlage für die ersten Beispiele sind wieder die palmerpenguins",
+    "text": "Datengrundlage für die ersten Beispiele sind wieder die palmerpenguins"
   },
   {
     "objectID": "GDSR_3_Part_1.html#basis-dplyr-funktionen-filter",
     "href": "GDSR_3_Part_1.html#basis-dplyr-funktionen-filter",
-    "title": "Datentransformation mit dplyr",
+    "title": "Datentransformation und Modellierung",
     "section": "Basis dplyr-Funktionen: filter( )",
     "text": "Basis dplyr-Funktionen: filter( )\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\nfilter( )\nfilter( ) wählt Zeilen auf der Basis des Werts einer Variable aus.\nfilter(penguins, species=='Gentoo')"
   },
   {
+    "objectID": "GDSR_3_Part_1.html#häufige-fehler",
+    "href": "GDSR_3_Part_1.html#häufige-fehler",
+    "title": "Datentransformation und Modellierung",
+    "section": "Häufige Fehler:",
+    "text": "Häufige Fehler:\n\n\nWenn in einer logischen Bedingung für Gleichheit getestet werden soll, muss == statt = verwendet werden.\n\n\n\n\n\n\n\n\n\n\n\nNicht vollständig ausgeschriebene Bedingungen."
+  },
+  {
     "objectID": "GDSR_3_Part_1.html#basis-dplyr-funktionen-arrange",
     "href": "GDSR_3_Part_1.html#basis-dplyr-funktionen-arrange",
-    "title": "Datentransformation mit dplyr",
+    "title": "Datentransformation und Modellierung",
     "section": "Basis dplyr-Funktionen: arrange( )",
-    "text": "Basis dplyr-Funktionen: arrange( )\n\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\narrange( )\narrange( ) ändert die Reihenfolge der Zeilen auf Basis des Wertes einer Variable.\narrange(penguins, body_mass_g)"
+    "text": "Basis dplyr-Funktionen: arrange( )\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\narrange( )\narrange( ) ändert die Reihenfolge der Zeilen auf Basis des Wertes einer Variable.\narrange(penguins, body_mass_g)\narrange(penguins, desc(body_mass_g))"
   },
   {
     "objectID": "GDSR_3_Part_1.html#basis-dplyr-funktionen-distinct",
     "href": "GDSR_3_Part_1.html#basis-dplyr-funktionen-distinct",
-    "title": "Datentransformation mit dplyr",
+    "title": "Datentransformation und Modellierung",
     "section": "Basis dplyr-Funktionen: distinct( )",
     "text": "Basis dplyr-Funktionen: distinct( )\n\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\ndistinct( )\ndistinct( ) findet alle eindeutigen Zeilen (eindeutige Kombination von Variablen) in einem Datensatz.\ndistinct(penguins, species, island)"
   },
   {
+    "objectID": "GDSR_3_Part_1.html#basis-dplyr-funktionen-count",
+    "href": "GDSR_3_Part_1.html#basis-dplyr-funktionen-count",
+    "title": "Datentransformation und Modellierung",
+    "section": "Basis dplyr-Funktionen: count( )",
+    "text": "Basis dplyr-Funktionen: count( )\n\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\ncount( )\ncount( ) zählt alle eindeutigen Zeilen (eindeutige Kombination von Variablen) in einem Datensatz.\ncount(penguins, species, island)"
+  },
+  {
     "objectID": "GDSR_3_Part_1.html#basis-dplyr-funktionen-mutate",
     "href": "GDSR_3_Part_1.html#basis-dplyr-funktionen-mutate",
-    "title": "Datentransformation mit dplyr",
+    "title": "Datentransformation und Modellierung",
     "section": "Basis dplyr-Funktionen: mutate( )",
     "text": "Basis dplyr-Funktionen: mutate( )\n\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\nmutate( )\nmutate( ) erstellt neue Variablen (Spalten) die aus den bestehenden berechnet werden.\nmutate(penguins, body_mass_kg=body_mass_g/1000)"
   },
   {
+    "objectID": "GDSR_3_Part_1.html#weitere-mutate---beispiele",
+    "href": "GDSR_3_Part_1.html#weitere-mutate---beispiele",
+    "title": "Datentransformation und Modellierung",
+    "section": "Weitere mutate( ) - Beispiele",
+    "text": "Weitere mutate( ) - Beispiele"
+  },
+  {
     "objectID": "GDSR_3_Part_1.html#basis-dplyr-funktionen-select",
     "href": "GDSR_3_Part_1.html#basis-dplyr-funktionen-select",
-    "title": "Datentransformation mit dplyr",
+    "title": "Datentransformation und Modellierung",
     "section": "Basis dplyr-Funktionen: select( )",
     "text": "Basis dplyr-Funktionen: select( )\n\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\nselect( )\nselect( ) erlaubt es einzelne Variablen aus einem DataFrame/Tibble auszuwählen.\nselect(penguins, species, body_mass_g)"
   },
   {
-    "objectID": "GDSR_3_Part_1.html#basis-dplyr-funktionen-rename",
-    "href": "GDSR_3_Part_1.html#basis-dplyr-funktionen-rename",
-    "title": "Datentransformation mit dplyr",
-    "section": "Basis dplyr-Funktionen: rename( )",
-    "text": "Basis dplyr-Funktionen: rename( )\n\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\nrename( )\nrename( ) erlaubt es einzelne Variablen umzubenennen.\nrename(penguins, weight=body_mass_g)"
+    "objectID": "GDSR_3_Part_1.html#select-kennt-viele-hilfsfunktionen-auswahl-1",
+    "href": "GDSR_3_Part_1.html#select-kennt-viele-hilfsfunktionen-auswahl-1",
+    "title": "Datentransformation und Modellierung",
+    "section": "select( ) kennt viele Hilfsfunktionen (Auswahl #1)",
+    "text": "select( ) kennt viele Hilfsfunktionen (Auswahl #1)"
   },
   {
-    "objectID": "GDSR_3_Part_1.html#aufgabe",
-    "href": "GDSR_3_Part_1.html#aufgabe",
-    "title": "Datentransformation mit dplyr",
-    "section": "Aufgabe",
-    "text": "Aufgabe\n\nErstellen Sie die Abbildung 1 aus dem Aufgabenblatt II neu. Dieses mal nur für Adelie Pinguine und messen Sie bitte body_mass_g in kg und bill_length_mm in cm. Achten Sie auf die korrekte Achsenbeschriftung.\n\n\n\n\n\n\n\n\n\n\n\nGitHub-Repo: https://github.com/dschnitzlein/GDSR_3_Part_1/"
+    "objectID": "GDSR_3_Part_1.html#select-kennt-viele-hilfsfunktionen-auswahl-2",
+    "href": "GDSR_3_Part_1.html#select-kennt-viele-hilfsfunktionen-auswahl-2",
+    "title": "Datentransformation und Modellierung",
+    "section": "select( ) kennt viele Hilfsfunktionen (Auswahl #2)",
+    "text": "select( ) kennt viele Hilfsfunktionen (Auswahl #2)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMehr Funktionen finden Sie unter ?select."
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#basis-dplyr-funktionen-rename",
+    "href": "GDSR_3_Part_1.html#basis-dplyr-funktionen-rename",
+    "title": "Datentransformation und Modellierung",
+    "section": "Basis dplyr-Funktionen: rename( )",
+    "text": "Basis dplyr-Funktionen: rename( )\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\nrename( )\nrename( ) erlaubt es einzelne Variablen umzubenennen.\nrename(penguins, weight=body_mass_g)"
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#basis-dplyr-funktionen-relocate",
+    "href": "GDSR_3_Part_1.html#basis-dplyr-funktionen-relocate",
+    "title": "Datentransformation und Modellierung",
+    "section": "Basis dplyr-Funktionen: relocate( )",
+    "text": "Basis dplyr-Funktionen: relocate( )\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\nrelocate( )\nrelocate( ) erlaubt es einzelne Variablen im Datensatz zu verschieben. Ohne Zusatz werden die Variablen nach vorne verschoben. Genauere Steuerung ist mit .before und .after möglich.\nrelocate(penguins, species)"
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#aufgabe-1",
+    "href": "GDSR_3_Part_1.html#aufgabe-1",
+    "title": "Datentransformation und Modellierung",
+    "section": "Aufgabe 1",
+    "text": "Aufgabe 1\n\nErstellen Sie die Abbildung 1 aus dem Aufgabenblatt II neu. Dieses mal nur für Adelie Pinguine und messen Sie bitte body_mass_g in kg und bill_length_mm in cm. Achten Sie auf die korrekte Achsenbeschriftung."
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#die-entwicklung-des-pipe-operators",
+    "href": "GDSR_3_Part_1.html#die-entwicklung-des-pipe-operators",
+    "title": "Datentransformation und Modellierung",
+    "section": "Die Entwicklung des pipe-Operators",
+    "text": "Die Entwicklung des pipe-Operators\n\n\n\nIm Januar 2012 gab es erste Diskussionen auf stackoverflow über die Entwicklung eines pipe-Operators für R.\nDaraus haben sich verschiedene Lösungen entwickelt u.a. im Paket magrittr mit folgendem Oprator %&gt;%. Technisch war das magrittr Paket nie Teil des Kern-tidyverse, aber eng mit diesem verbunden und alle Pakete unterstützten die magrittr Pipe.\nEin pipe-Operator ermöglicht es verschiedene Funktionen zu kombinieren und auf das selbe Objekt anzuwenden.\nWie jede Neuerung wurde die Idee eines pipe-Operator (für R) bzw. einer Befehlspipeline zuerst kontrovers diskutiert, hat sich dann aber als sehr nützlich herausgestellt und wurde extrem beliebt (auch außerhalb der tidyverse Pakete).\nMit R-Version 4.1.0 (Mai 2021) hat R einen pipe-Operator |&gt; in base R eingeführt, der weitgehend identisch zu der magrittr Variante funktioniert.\nVorteil: Jetzt können auch Pakete, die sich nicht auf magrittr berufen, Befehlspipelines nutzen. Die magrittr Version kann weiter verwendet werden, für fast alle Anwendungsfälle ist es aber sinnvoller die neue einheitliche base Version zu verwenden.\nAnmerkung: Wenn Sie in Foren etc. Lösungen mit %&gt;% finden, können Sie diese normalerweise weiterhin verwenden und einfach %&gt;% durch |&gt; ersetzen."
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#was-kann-der-pipe-operator",
+    "href": "GDSR_3_Part_1.html#was-kann-der-pipe-operator",
+    "title": "Datentransformation und Modellierung",
+    "section": "Was kann der pipe-Operator",
+    "text": "Was kann der pipe-Operator\n\nAngenommen, wir möchten aus den Pinguindaten einen neuen Datensatz erstellen, der nur Adeliepinguine mit einem Gewicht von mehr als 3 kg enthält, und wir möchten nur das Gewicht in kg in den Daten haben, das Geschlecht und den Beobachtungszeitpunkt.\n\nOption 1: Zwischenschritte"
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#was-kann-der-pipe-operator-1",
+    "href": "GDSR_3_Part_1.html#was-kann-der-pipe-operator-1",
+    "title": "Datentransformation und Modellierung",
+    "section": "Was kann der pipe-Operator",
+    "text": "Was kann der pipe-Operator\n\nAngenommen, wir möchten aus den Pinguindaten einen neuen Datensatz erstellen, der nur Adeliepinguine mit einem Gewicht von mehr als 3 kg enthält, und wir möchten nur das Gewicht in kg in den Daten haben, das Geschlecht und den Beobachtungszeitpunkt.\n\nOption 2: Pipe"
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#die-pipe-in-aktion",
+    "href": "GDSR_3_Part_1.html#die-pipe-in-aktion",
+    "title": "Datentransformation und Modellierung",
+    "section": "Die Pipe in Aktion",
+    "text": "Die Pipe in Aktion\n\n\n\nInnerhalb der Pipeline wird der jeweilige Datensatz von links nach rechts weitergegeben.\nAus diesem Grund ist es nicht notwendig, in den einzelnen Funktionen die Daten zu spezifizieren, da diese aus der Pipeline entnommen werden.\nÄhnlich wie in einem ggplot( ) Aufruf, werden die einzelnen Funktionen auf eigene Zeilen geschrieben.\nAchtung: Auch hier gilt, wenn das Ergebnis der Pipeline gespeichert werden soll, muss es einem R-Objekt zugewiesen werden."
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#aufgabe-2",
+    "href": "GDSR_3_Part_1.html#aufgabe-2",
+    "title": "Datentransformation und Modellierung",
+    "section": "Aufgabe 2",
+    "text": "Aufgabe 2\n\nErstellen Sie die Abbildung 1 aus Aufgabe 1 neu und nutzen Sie diesmal den Pipe-Operator."
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#basis-dplyr-funktionen-group_by",
+    "href": "GDSR_3_Part_1.html#basis-dplyr-funktionen-group_by",
+    "title": "Datentransformation und Modellierung",
+    "section": "Basis dplyr-Funktionen: group_by( )",
+    "text": "Basis dplyr-Funktionen: group_by( )\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\ngroup_by()\ngroup_by( ) gruppiert den Datensatz in Untergruppen, die für die Analyse interessant sind.\ngroup_by(penguins, species)\n\n\n\n\n\n\n\n\n\n\n\n\n\nAnmerkung: group_by( ) ändert die Daten nicht, aber wenn Sie sich die Ausgabe genau ansehen, werden Sie feststellen, dass die Ausgabe anzeigt, dass die Daten jetzt nach species „gruppiert“ sind. Das bedeutet, dass nachfolgende Vorgänge nun „nach Species“ funktionieren. group_by( ) fügt diese Gruppierungsfunktion dem Datensatz hinzu, wodurch sich das Verhalten der nachfolgenden Funktionen ändert, die auf die Daten angewendet werden."
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#basis-dplyr-funktionen-summarize",
+    "href": "GDSR_3_Part_1.html#basis-dplyr-funktionen-summarize",
+    "title": "Datentransformation und Modellierung",
+    "section": "Basis dplyr-Funktionen: summarize( )",
+    "text": "Basis dplyr-Funktionen: summarize( )\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\nsummarize()\nsummarize( ) kann genutzt werden um deskriptive Statistiken auf (gruppierten) Daten zu berechnen.\nsummarize(penguins, avg_bill_length = mean(bill_length_mm, na.rm=TRUE))"
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#basis-dplyr-funktionen-summarize-1",
+    "href": "GDSR_3_Part_1.html#basis-dplyr-funktionen-summarize-1",
+    "title": "Datentransformation und Modellierung",
+    "section": "Basis dplyr-Funktionen: summarize( )",
+    "text": "Basis dplyr-Funktionen: summarize( )\n\n\n\n\n\n\n\n\n\n\n\nAnmerkung: Es kann natürlich auch anhand mehrerer Variablen gruppiert werden.\nSoll in einem Datensatz die Gruppierung entfernt werden, kann man das via ungroup( ) erreichen."
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#basis-dplyr-funktionen-summarize-2",
+    "href": "GDSR_3_Part_1.html#basis-dplyr-funktionen-summarize-2",
+    "title": "Datentransformation und Modellierung",
+    "section": "Basis dplyr-Funktionen: summarize( )",
+    "text": "Basis dplyr-Funktionen: summarize( )\n\n\n\n\n\n\n\n\n\n\n\nSeit dplyr Version 1.1.0 (Februar 2023) kann das gleiche Ergebnis mit dem .by Argument auf einer “je-Befehls” Basis erreicht werden. Der Vorteil hier liegt darin, dass man im weiteren Verlauf nicht “vergessen” kann, dass man den Datensatz gruppiert hat."
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#tidyverse-datenphilosophie",
+    "href": "GDSR_3_Part_1.html#tidyverse-datenphilosophie",
+    "title": "Datentransformation und Modellierung",
+    "section": "Tidyverse-Datenphilosophie",
+    "text": "Tidyverse-Datenphilosophie"
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#was-ist-jetzt-tidy-data",
+    "href": "GDSR_3_Part_1.html#was-ist-jetzt-tidy-data",
+    "title": "Datentransformation und Modellierung",
+    "section": "Was ist jetzt tidy data?",
+    "text": "Was ist jetzt tidy data?\n\nEs gibt drei miteinander zusammenhängende Regeln, die einen Datensatz zu tidy data machen:\n\nJede Variable ist eine Spalte; jede Spalte ist eine Variable.\nJede Beobachtung ist eine Zeile; jede Zeile ist eine Beobachtung.\nJeder Wert ist eine Zelle; jede Zelle ist ein einzelner Wert."
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#tidy-oder-nicht-tidy",
+    "href": "GDSR_3_Part_1.html#tidy-oder-nicht-tidy",
+    "title": "Datentransformation und Modellierung",
+    "section": "Tidy oder nicht tidy?",
+    "text": "Tidy oder nicht tidy?"
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#tidy-oder-nicht-tidy-1",
+    "href": "GDSR_3_Part_1.html#tidy-oder-nicht-tidy-1",
+    "title": "Datentransformation und Modellierung",
+    "section": "Tidy oder nicht tidy?",
+    "text": "Tidy oder nicht tidy?"
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#tidy-oder-nicht-tidy-2",
+    "href": "GDSR_3_Part_1.html#tidy-oder-nicht-tidy-2",
+    "title": "Datentransformation und Modellierung",
+    "section": "Tidy oder nicht tidy?",
+    "text": "Tidy oder nicht tidy?"
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#einfaches-lineares-regressionsmodell-wdh.",
+    "href": "GDSR_3_Part_1.html#einfaches-lineares-regressionsmodell-wdh.",
+    "title": "Datentransformation und Modellierung",
+    "section": "Einfaches lineares Regressionsmodell (Wdh.)",
+    "text": "Einfaches lineares Regressionsmodell (Wdh.)\n\n\nDie lineare Regression zielt darauf ab, eine lineare Beziehung zwischen einer abhängigen Variable und einer unabhängigen Variablen zu beschreiben, unter der Annahme, dass in der Population eine lineare Beziehung zwischen den Variablen y und x besteht, die wie folgt spezifiziert werden kann:\n\\[\ny_i = \\alpha + \\beta_1 x_1 + u_i\n\\]\n\\(y_i\\) wird dabei als abhängige Variable bezeichnet, \\(\\alpha\\) und \\(\\beta_1\\) sind Regressionsparameter, \\(u_i\\) ist der Störterm und \\(x_1\\) ist die unabhängige Variable.\nDa die Parameter des obigen Modells nicht bekannt sind und nicht beobachtet werden können, müssen diese (auf Basis einer Stichprobe) geschätzt werden.\nDas OLS- oder KQ-Verfahren ist dabei das gängigste Verfahren.\nDie Parameter werden dabei so gewählt, dass die Summe der quadrierten Residuen minimiert wird."
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#einfaches-lineares-regressionsmodell-grafische-illustration",
+    "href": "GDSR_3_Part_1.html#einfaches-lineares-regressionsmodell-grafische-illustration",
+    "title": "Datentransformation und Modellierung",
+    "section": "Einfaches lineares Regressionsmodell (grafische Illustration)",
+    "text": "Einfaches lineares Regressionsmodell (grafische Illustration)"
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#lineares-regressionsmodell-lm",
+    "href": "GDSR_3_Part_1.html#lineares-regressionsmodell-lm",
+    "title": "Datentransformation und Modellierung",
+    "section": "Lineares Regressionsmodell lm( )",
+    "text": "Lineares Regressionsmodell lm( )\n\n\nDie lm( ) - Funktion aus base R ist die wichtigste (nicht die einzige) Funktion um lineare Regressionsmodelle zu schätzen. Die Funktionssyntax lautet lm(formula = y ~ x1 + x2, data=DataFrame) oder kurz lm(y ~ x1 + x2, data=DataFrame).\nAnwendung auf die Pinguindaten: \\(body\\_mass\\_g_i = \\alpha + \\beta_1 flipper\\_length\\_mm_i + u_i\\)\n\n\n\n\n\n\n\n\n\n\num detaillierte Regressionsergebnisse zu erhalten, kann man die summary()-Funktion nutzen."
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#grafisch",
+    "href": "GDSR_3_Part_1.html#grafisch",
+    "title": "Datentransformation und Modellierung",
+    "section": "Grafisch",
+    "text": "Grafisch"
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#lm-und-in-der-pipe",
+    "href": "GDSR_3_Part_1.html#lm-und-in-der-pipe",
+    "title": "Datentransformation und Modellierung",
+    "section": "lm( ) und in der Pipe",
+    "text": "lm( ) und in der Pipe\n\nDie lm( )-Funktion kann ohne Probleme in einer Pipe verwendet werden. Hier muss jedoch beachtet werden, dass die erste Stelle in der Funktion die Formel und nicht der Datensatz ist. Dieses Problem kann man umgehen, indem man das Formelobjekt explizit als solches bezeichnet. R setzt dann den Datensatz automatisch an die nächste Stelle im Funktionsaufruf und das ist dann der korrekte Platz."
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#interpretation-der-ergebnisse",
+    "href": "GDSR_3_Part_1.html#interpretation-der-ergebnisse",
+    "title": "Datentransformation und Modellierung",
+    "section": "Interpretation der Ergebnisse",
+    "text": "Interpretation der Ergebnisse\n\n\n\n\n\n\n\n\n\n\nInterpretation: Ein zusätzlicher mm Flossenlänge ist im Durchschnitt, bei sonst gleichen Bedingungen, mit einem um 49.69g höheren Gewicht verbunden."
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#multivariates-lineares-regressionsmodell",
+    "href": "GDSR_3_Part_1.html#multivariates-lineares-regressionsmodell",
+    "title": "Datentransformation und Modellierung",
+    "section": "Multivariates lineares Regressionsmodell",
+    "text": "Multivariates lineares Regressionsmodell\n\nDie lm( )-Funktion kann ohne Probleme Modelle mit vielen erklärenden Variablen verarbeiten."
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#multivariates-lineares-regressionsmodell---kategoriale-variablen",
+    "href": "GDSR_3_Part_1.html#multivariates-lineares-regressionsmodell---kategoriale-variablen",
+    "title": "Datentransformation und Modellierung",
+    "section": "Multivariates lineares Regressionsmodell - Kategoriale Variablen",
+    "text": "Multivariates lineares Regressionsmodell - Kategoriale Variablen\n\nSind die Variablen (Spalten des DataFrame) korrekt spezifiziert, kann lm( ) auch kategoriale Variablen automatisch verarbeiten."
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#multivariates-lineares-regressionsmodell---interaktionseffekte",
+    "href": "GDSR_3_Part_1.html#multivariates-lineares-regressionsmodell---interaktionseffekte",
+    "title": "Datentransformation und Modellierung",
+    "section": "Multivariates lineares Regressionsmodell - Interaktionseffekte",
+    "text": "Multivariates lineares Regressionsmodell - Interaktionseffekte\n\nSind die Variablen (Spalten des DataFrame) korrekt spezifiziert, kann lm( ) auch Interaktionseffekte automatisch verarbeiten."
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#aufgabe-3",
+    "href": "GDSR_3_Part_1.html#aufgabe-3",
+    "title": "Datentransformation und Modellierung",
+    "section": "Aufgabe 3",
+    "text": "Aufgabe 3\n\nBerechnen Sie anhand der Daten folgendes lineares Regressionsmodell, einmal für alle Pinguine zusammen und dann getrennt für alle drei Pinguinarten. Interpretieren Sie Ihre Ergebnisse. Beachten Sie, dass Sie die Variablen \\(body\\_mass\\_kg\\), \\(flipper\\_length\\_cm\\) und \\(bill\\_depth\\_cm\\) erst berechnen müssen.\n\\[ body\\_mass\\_kg_i = \\alpha + \\beta_1 flipper\\_length\\_cm_i + \\beta_2 bill\\_depth\\_cm_i + \\beta_3 sex_i + \\beta_4 bill\\_depth\\_cm_i * sex_i + u_i \\]"
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#weitere-modelle",
+    "href": "GDSR_3_Part_1.html#weitere-modelle",
+    "title": "Datentransformation und Modellierung",
+    "section": "Weitere Modelle",
+    "text": "Weitere Modelle\n\n\nR kann natürlich nicht nur lineare Regressionsmodelle berechnen, sondern ist in der Lage (fast) alle existierenden Modellfamilien zu berechnen.\nEs würde jetzt hier den Rahmen sprengen um alle aufzuführen. Am einfachsten ist es die jeweilige Modellbezeichnung zusammen mit R zu googeln.\nDie Mehrzahl der Modellfunktionen verhält sich aber wie die lm( )-Funktion und besteht aus einem Formelobjekt, dem Aufruf des DataFrame und ggf. weiterer Argumente um Verteilungen etc. zu spezifizieren.\nDas gilt sowohl für frequentistische Modellierung als auch für Bayes-Modellierung."
+  },
+  {
+    "objectID": "GDSR_3_Part_1.html#ausblick",
+    "href": "GDSR_3_Part_1.html#ausblick",
+    "title": "Datentransformation und Modellierung",
+    "section": "Ausblick:",
+    "text": "Ausblick:\n\n\n\nIm nächsten Termin beschäftigen wir uns damit den Output der Tabellen hübsch (druckreif) zu machen und Tabellen und Abbildungen zu vereinheitlichen.\n\n\n\nGitHub-Repo: https://github.com/dschnitzlein/GDSR_3_Part_1/"
   }
 ]

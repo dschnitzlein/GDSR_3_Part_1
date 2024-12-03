@@ -1,5 +1,5 @@
 ---
-title: "Datentransformation mit dplyr"
+title: "Datentransformation und Modellierung"
 subtitle: "Grundlagen der Datenanalyse und Statistik mit R | WS 2024/25"
 author: "Prof. Dr. Daniel Schnitzlein"
 footer: "GitHub-Repo: <https://github.com/dschnitzlein/GDSR_3_Part_1/>"
@@ -23,6 +23,8 @@ editor: visual
 
 {{< include ./_extensions/r-wasm/live/_knitr.qmd >}}
 
+# `dplyr`-Paket
+
 ## Das `dplyr` Paket
 
 <br>
@@ -30,7 +32,7 @@ editor: visual
 :::::: columns
 :::: {.column width="60%"}
 ::: incremental
--   Alle Datenmanipulationen und -transformationen die wir in diesem Abschnitt behandeln können auch in Base R ausgeführt werden.
+-   Alle Datenmanipulationen und -transformationen die wir in diesem Abschnitt behandeln, können auch in Base R ausgeführt werden.
 
 -   Allerdings stellt das `tidyverse` mit dem `dplyr` Paket ein Werkzeug zur Verfügung, das die Arbeit mit Daten und speziell komplexeren Daten deutlich vereinfacht.
 
@@ -55,7 +57,11 @@ editor: visual
 
 <br>
 
-![](images/Bild3.png){fig-align="center"}
+::: r-stack
+![](images/Bild3_ohne.png){.fragment fig-align="center"}
+
+![](images/Bild3.png){.fragment fig-align="center"}
+:::
 
 ## Struktur des Funktionsaufrufs
 
@@ -74,12 +80,14 @@ editor: visual
 
 -   Da jede Funktion eine Sache speziell gut macht, müssen für komplexere Transformationen mehrere Funktionen verbunden werden.
 
--   Dafür steht uns später der Pipe Operator zur Verfügung.
+-   Dafür steht uns der Pipe Operator zur Verfügung. Früher `%>%` aus dem Paket `magrittr` (verschiedene Entwicklungen seit Mitte 2012, in verschiedenen Paketen), heute `|>` aus `base` R (seit R Version 4.1 im Mai 2021).
 
--   **Wichtig:** `dplyr`-Funktionen führen die jeweilige Operation aus, erstellen eine neues Tibble und geben dieses aus. Es werden nie Änderungen an dem Quelldatensatz durchgeführt. Um die Änderungen zu speichern, muss man entweder den alten Datensatz mit dem neuen Datensatz überschreiben, oder ein neues Objekt anlegen. Beides geht mit dem Assignment Operator \<-.
+-   **Wichtig:** `dplyr`-Funktionen führen die jeweilige Operation aus, erstellen eine neues Tibble und geben dieses aus. Es werden nie Änderungen an dem Quelldatensatz durchgeführt. Um die Änderungen zu speichern, muss man entweder den alten Datensatz mit dem neuen Datensatz überschreiben, oder ein neues Objekt anlegen. Beides geht mit dem Assignment Operator `<-`.
 :::
 
-## Datengrundlage für die Beispiele sind wieder die `palmerpenguins`
+# Datentransformation
+
+## Datengrundlage für die ersten Beispiele sind wieder die `palmerpenguins`
 
 <br>
 
@@ -90,15 +98,25 @@ library(dplyr)
 print(penguins, n=100)
 ```
 
+## Datengrundlage für die ersten Beispiele sind wieder die `palmerpenguins`
+
+<br>
+
+```{webr}
+glimpse(penguins)
+```
+
 ## Basis `dplyr`-Funktionen: `filter( )`
 
 <br>
 
 <br>
 
-| Funktion | Beschreibung | Beispiel |
-|------------------------|------------------------|------------------------|
++-------------+----------------------------------------------------------------------+---------------------------------------+
+| Funktion    | Beschreibung                                                         | Beispiel                              |
++=============+======================================================================+=======================================+
 | `filter( )` | `filter( )` wählt Zeilen auf der Basis des Werts einer Variable aus. | `filter(penguins, species=='Gentoo')` |
++-------------+----------------------------------------------------------------------+---------------------------------------+
 
 <br>
 
@@ -107,15 +125,35 @@ filter_beispiel <- filter(penguins, species=='Gentoo')
 print(penguins, n=100)
 ```
 
+## Häufige Fehler:
+
+<br>
+
+-   Wenn in einer logischen Bedingung für Gleichheit getestet werden soll, muss `==` statt `=` verwendet werden.
+
+```{webr}
+filter_beispiel <- filter(penguins, species='Gentoo')
+```
+
+<br>
+
+-   Nicht vollständig ausgeschriebene Bedingungen.
+
+```{webr}
+filter_beispiel <- filter(penguins, species=='Gentoo' | 'Adelie')
+```
+
 ## Basis `dplyr`-Funktionen: `arrange( )`
 
 <br>
 
-<br>
-
-| Funktion | Beschreibung | Beispiel |
-|------------------------|------------------------|------------------------|
-| `arrange( )` | `arrange( )` ändert die Reihenfolge der Zeilen auf Basis des Wertes einer Variable. | `arrange(penguins, body_mass_g)` |
++--------------+-------------------------------------------------------------------------------------+----------------------------------------+
+| Funktion     | Beschreibung                                                                        | Beispiel                               |
++==============+=====================================================================================+========================================+
+| `arrange( )` | `arrange( )` ändert die Reihenfolge der Zeilen auf Basis des Wertes einer Variable. | `arrange(penguins, body_mass_g)`       |
+|              |                                                                                     |                                        |
+|              |                                                                                     | `arrange(penguins, desc(body_mass_g))` |
++--------------+-------------------------------------------------------------------------------------+----------------------------------------+
 
 : <br>
 
@@ -130,9 +168,11 @@ print(arrange_beispiel, n=100)
 
 <br>
 
-| Funktion | Beschreibung | Beispiel |
-|------------------------|------------------------|------------------------|
++---------------+---------------------------------------------------------------------------------------------------------+---------------------------------------+
+| Funktion      | Beschreibung                                                                                            | Beispiel                              |
++===============+=========================================================================================================+=======================================+
 | `distinct( )` | `distinct( )` findet alle eindeutigen Zeilen (eindeutige Kombination von Variablen) in einem Datensatz. | `distinct(penguins, species, island)` |
++---------------+---------------------------------------------------------------------------------------------------------+---------------------------------------+
 
 : <br>
 
@@ -141,15 +181,36 @@ distinct_beispiel <- distinct(penguins, species, island)
 print(distinct_beispiel, n=100)
 ```
 
+## Basis `dplyr`-Funktionen: `count( )`
+
+<br>
+
+<br>
+
++------------+-----------------------------------------------------------------------------------------------------+------------------------------------+
+| Funktion   | Beschreibung                                                                                        | Beispiel                           |
++============+=====================================================================================================+====================================+
+| `count( )` | `count( )` zählt alle eindeutigen Zeilen (eindeutige Kombination von Variablen) in einem Datensatz. | `count(penguins, species, island)` |
++------------+-----------------------------------------------------------------------------------------------------+------------------------------------+
+
+: <br>
+
+```{webr}
+count_beispiel <- count(penguins, species, island)
+print(count_beispiel, n=100)
+```
+
 ## Basis `dplyr`-Funktionen: `mutate( )`
 
 <br>
 
 <br>
 
-| Funktion | Beschreibung | Beispiel |
-|------------------------|------------------------|------------------------|
++-------------+-----------------------------------------------------------------------------------------+---------------------------------------------------+
+| Funktion    | Beschreibung                                                                            | Beispiel                                          |
++=============+=========================================================================================+===================================================+
 | `mutate( )` | `mutate( )` erstellt neue Variablen (Spalten) die aus den bestehenden berechnet werden. | `mutate(penguins, body_mass_kg=body_mass_g/1000)` |
++-------------+-----------------------------------------------------------------------------------------+---------------------------------------------------+
 
 : <br>
 
@@ -158,15 +219,41 @@ mutate_beispiel <- mutate(penguins, body_mass_kg=body_mass_g/1000)
 summary(mutate_beispiel)
 ```
 
+## Weitere `mutate( )` - Beispiele
+
+<br>
+
+```{webr}
+mutate_beispiel2 <- mutate(penguins, body_mass_kg=body_mass_g/1000, flipper_length_cm=flipper_length_mm/10)
+summary(mutate_beispiel2)
+```
+
+<br>
+
+```{webr}
+# Statt .before ist auch .after möglich.
+mutate_beispiel3 <- mutate(penguins, body_mass_kg=body_mass_g/1000, .before=1)
+head(mutate_beispiel3) 
+```
+
+<br>
+
+```{webr}
+mutate_beispiel4 <- mutate(penguins, body_mass_kg=body_mass_g/1000, .keep='used')
+head(mutate_beispiel4)
+```
+
 ## Basis `dplyr`-Funktionen: `select( )`
 
 <br>
 
 <br>
 
-| Funktion | Beschreibung | Beispiel |
-|------------------------|------------------------|------------------------|
++-------------+-----------------------------------------------------------------------------------+------------------------------------------+
+| Funktion    | Beschreibung                                                                      | Beispiel                                 |
++=============+===================================================================================+==========================================+
 | `select( )` | `select( )` erlaubt es einzelne Variablen aus einem DataFrame/Tibble auszuwählen. | `select(penguins, species, body_mass_g)` |
++-------------+-----------------------------------------------------------------------------------+------------------------------------------+
 
 : <br>
 
@@ -175,15 +262,56 @@ select_beispiel <- select(penguins, species, body_mass_g)
 print(select_beispiel, n=100)
 ```
 
+## `select( )` kennt viele Hilfsfunktionen (Auswahl #1)
+
+<br>
+
+```{webr}
+select_beispiel2 <- select(penguins, where(is.character))
+print(select_beispiel2, n=100)
+```
+
+<br>
+
+```{webr}
+select_beispiel3 <- select(penguins, starts_with("spec"))
+print(select_beispiel3, n=100)
+```
+
+<br>
+
+```{webr}
+select_beispiel4 <- select(penguins, ends_with("spec"))
+print(select_beispiel4, n=100)
+```
+
+## `select( )` kennt viele Hilfsfunktionen (Auswahl #2)
+
+<br>
+
+```{webr}
+select_beispiel5 <- select(penguins, contains("spec"))
+print(select_beispiel5, n=100)
+```
+
+<br>
+
+```{webr}
+select_beispiel6 <- select(penguins, Art=species))
+print(select_beispiel5, n=100)
+```
+
+-   Mehr Funktionen finden Sie unter `?select`.
+
 ## Basis `dplyr`-Funktionen: `rename( )`
 
 <br>
 
-<br>
-
-| Funktion | Beschreibung | Beispiel |
-|------------------------|------------------------|------------------------|
-| `rename( )` | `rename( )` erlaubt es einzelne Variablen umzubenennen. | `rename(penguins, weight=body_mass_g)` |
++--------------+---------------------------------------------------------+----------------------------------------+
+| Funktion     | Beschreibung                                            | Beispiel                               |
++==============+=========================================================+========================================+
+| `rename( )`  | `rename( )` erlaubt es einzelne Variablen umzubenennen. | `rename(penguins, weight=body_mass_g)` |
++--------------+---------------------------------------------------------+----------------------------------------+
 
 : <br>
 
@@ -192,7 +320,24 @@ rename_beispiel <- rename(penguins, weight=body_mass_g)
 print(rename_beispiel, n=100)
 ```
 
-## Aufgabe
+## Basis `dplyr`-Funktionen: `relocate( )`
+
+<br>
+
++---------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------+
+| Funktion      | Beschreibung                                                                                                                                                                                | Beispiel                      |
++===============+=============================================================================================================================================================================================+===============================+
+| `relocate( )` | `relocate( )` erlaubt es einzelne Variablen im Datensatz zu verschieben. Ohne Zusatz werden die Variablen nach vorne verschoben. Genauere Steuerung ist mit `.before` und `.after` möglich. | `relocate(penguins, species)` |
++---------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------+
+
+: <br>
+
+```{webr}
+relocate_beispiel <- relocate(penguins, species)
+print(relocate_beispiel, n=100)
+```
+
+## Aufgabe 1
 
 <br>
 
@@ -201,3 +346,365 @@ Erstellen Sie die Abbildung 1 aus dem Aufgabenblatt II neu. Dieses mal nur für 
 ```{webr}
 
 ```
+
+## Die Entwicklung des pipe-Operators
+
+<br>
+
+::: incremental
+-   Im Januar 2012 gab es erste Diskussionen auf `stackoverflow` über die Entwicklung eines pipe-Operators für R.
+-   Daraus haben sich verschiedene Lösungen entwickelt u.a. im Paket `magrittr` mit folgendem Oprator `%>%`. Technisch war das `magrittr` Paket nie Teil des Kern-`tidyverse`, aber eng mit diesem verbunden und alle Pakete unterstützten die `magrittr` Pipe.
+-   Ein pipe-Operator ermöglicht es verschiedene Funktionen zu kombinieren und auf das selbe Objekt anzuwenden.
+-   Wie jede Neuerung wurde die Idee eines pipe-Operator (für R) bzw. einer Befehlspipeline zuerst kontrovers diskutiert, hat sich dann aber als sehr nützlich herausgestellt und wurde extrem beliebt (auch außerhalb der `tidyverse` Pakete).
+-   Mit R-Version 4.1.0 (Mai 2021) hat R einen pipe-Operator `|>` in `base` R eingeführt, der weitgehend identisch zu der `magrittr` Variante funktioniert.
+-   Vorteil: Jetzt können auch Pakete, die sich nicht auf `magrittr` berufen, Befehlspipelines nutzen. Die `magrittr` Version kann weiter verwendet werden, für fast alle Anwendungsfälle ist es aber sinnvoller die neue einheitliche `base` Version zu verwenden.
+-   Anmerkung: Wenn Sie in Foren etc. Lösungen mit `%>%` finden, können Sie diese normalerweise weiterhin verwenden und einfach `%>%` durch `|>` ersetzen.
+:::
+
+## Was kann der pipe-Operator
+
+<br>
+
+Angenommen, wir möchten aus den Pinguindaten einen neuen Datensatz erstellen, der nur Adeliepinguine mit einem Gewicht von mehr als 3 kg enthält, und wir möchten nur das Gewicht in kg in den Daten haben, das Geschlecht und den Beobachtungszeitpunkt.
+
+<br>
+
+**Option 1: Zwischenschritte**
+
+```{webr}
+step1 <- filter(penguins, species=="Adelie")
+step2 <- mutate(step1, weight = body_mass_g /1000)
+step3 <- filter(step2, weight > 3)
+penguins_new <- select(step3, weight, sex, year)
+head(penguins_new)
+```
+
+## Was kann der pipe-Operator
+
+<br>
+
+Angenommen, wir möchten aus den Pinguindaten einen neuen Datensatz erstellen, der nur Adeliepinguine mit einem Gewicht von mehr als 3 kg enthält, und wir möchten nur das Gewicht in kg in den Daten haben, das Geschlecht und den Beobachtungszeitpunkt.
+
+<br>
+
+**Option 2: Pipe**
+
+```{webr}
+penguins_new <- penguins |> 
+  filter(species=="Adelie") |>
+  mutate(weight = body_mass_g /1000) |> 
+  filter(weight > 3) |> 
+  select(weight, sex, year)
+head(penguins_new)
+```
+
+## Die Pipe in Aktion
+
+<br>
+
+::: incremental
+-   Innerhalb der Pipeline wird der jeweilige Datensatz von links nach rechts weitergegeben.
+-   Aus diesem Grund ist es nicht notwendig, in den einzelnen Funktionen die Daten zu spezifizieren, da diese aus der Pipeline entnommen werden.
+-   Ähnlich wie in einem `ggplot( )` Aufruf, werden die einzelnen Funktionen auf eigene Zeilen geschrieben.
+-   Achtung: Auch hier gilt, wenn das Ergebnis der Pipeline gespeichert werden soll, muss es einem R-Objekt zugewiesen werden.
+:::
+
+## Aufgabe 2
+
+<br>
+
+Erstellen Sie die Abbildung 1 aus Aufgabe 1 neu und nutzen Sie diesmal den Pipe-Operator.
+
+```{webr}
+
+```
+
+## Basis `dplyr`-Funktionen: `group_by( )`
+
+<br>
+
++--------------+----------------------------------------------------------------------------------------------+-------------------------------+
+| Funktion     | Beschreibung                                                                                 | Beispiel                      |
++==============+==============================================================================================+===============================+
+| `group_by()` | `group_by( )` gruppiert den Datensatz in Untergruppen, die für die Analyse interessant sind. | `group_by(penguins, species)` |
++--------------+----------------------------------------------------------------------------------------------+-------------------------------+
+
+<br>
+
+```{webr}
+group_by_beispiel <- group_by(penguins, species)
+group_by_beispiel
+```
+
+<br>
+
+**Anmerkung:** `group_by( )` ändert die Daten nicht, aber wenn Sie sich die Ausgabe genau ansehen, werden Sie feststellen, dass die Ausgabe anzeigt, dass die Daten jetzt nach `species` „gruppiert“ sind. Das bedeutet, dass nachfolgende Vorgänge nun „nach Species“ funktionieren. `group_by( )` fügt diese Gruppierungsfunktion dem Datensatz hinzu, wodurch sich das Verhalten der nachfolgenden Funktionen ändert, die auf die Daten angewendet werden.
+
+## Basis `dplyr`-Funktionen: `summarize( )`
+
+<br>
+
++---------------+-----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------+
+| Funktion      | Beschreibung                                                                                        | Beispiel                                                                  |
++===============+=====================================================================================================+===========================================================================+
+| `summarize()` | `summarize( )` kann genutzt werden um deskriptive Statistiken auf (gruppierten) Daten zu berechnen. | `summarize(penguins, avg_bill_length = mean(bill_length_mm, na.rm=TRUE))` |
++---------------+-----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------+
+
+<br>
+
+```{webr}
+group_by_beispiel <- group_by(penguins, species)
+summarize(group_by_beispiel, avg_bill_length = mean(bill_length_mm, na.rm=TRUE))
+```
+
+## Basis `dplyr`-Funktionen: `summarize( )`
+
+<br>
+
+```{webr}
+penguins |> 
+  group_by(species) |> 
+  summarize(
+    avg_bill_length = mean(bill_length_mm, na.rm=TRUE),
+    avg_flipper_length = mean(bill_length_mm, na.rm=TRUE),
+    n=n()
+    )
+```
+
+<br>
+
+-   **Anmerkung:** Es kann natürlich auch anhand mehrerer Variablen gruppiert werden.
+
+-   Soll in einem Datensatz die Gruppierung entfernt werden, kann man das via `ungroup( )` erreichen.
+
+## Basis `dplyr`-Funktionen: `summarize( )`
+
+<br>
+
+```{webr}
+penguins |> 
+  summarize(
+    avg_bill_length = mean(bill_length_mm, na.rm=TRUE),
+    avg_flipper_length = mean(bill_length_mm, na.rm=TRUE),
+    n=n(),
+    .by = species
+    )
+```
+
+<br>
+
+-   Seit `dplyr` Version 1.1.0 (Februar 2023) kann das gleiche Ergebnis mit dem `.by` Argument auf einer "je-Befehls" Basis erreicht werden. Der Vorteil hier liegt darin, dass man im weiteren Verlauf nicht "vergessen" kann, dass man den Datensatz gruppiert hat.
+
+# Tidy Data
+
+## Tidyverse-Datenphilosophie
+
+![](images/bild4.png){fig-align="center"}
+
+## Was ist jetzt tidy data?
+
+<br>
+
+Es gibt drei miteinander zusammenhängende Regeln, die einen Datensatz zu tidy data machen:
+
+-   Jede **Variable** ist eine **Spalte**; jede **Spalte** ist eine **Variable**.
+
+-   Jede **Beobachtung** ist eine **Zeile**; jede **Zeile** ist eine **Beobachtung**.
+
+-   Jeder **Wert** ist eine **Zelle**; jede **Zelle** ist ein **einzelner Wert**.
+
+![](images/Bild5.png){fig-align="center"}
+
+## Tidy oder nicht tidy?
+
+<br>
+
+::: r-stack
+![](images/Bild6.png){.fragment fig-align="center"}
+
+![](images/Bild6_neu.png){.fragment fig-align="center"}
+:::
+
+## Tidy oder nicht tidy?
+
+<br>
+
+::: r-stack
+![](images/Bild7.png){.fragment fig-align="center"}
+
+![](images/Bild7_neu.png){.fragment fig-align="center"}
+:::
+
+## Tidy oder nicht tidy?
+
+<br>
+
+::: r-stack
+![](images/Bild8.png){.fragment fig-align="center"}
+
+![](images/Bild8_neu.png){.fragment fig-align="center"}
+:::
+
+# Statistische Modellierung
+
+## Einfaches lineares Regressionsmodell (Wdh.)
+
+<br>
+
+-   Die lineare Regression zielt darauf ab, eine **lineare Beziehung** zwischen einer abhängigen Variable und einer unabhängigen Variablen zu beschreiben, unter der Annahme, dass in der Population eine lineare Beziehung zwischen den Variablen y und x besteht, die wie folgt spezifiziert werden kann:
+
+    $$
+    y_i = \alpha + \beta_1 x_1 + u_i
+    $$
+
+-   $y_i$ wird dabei als abhängige Variable bezeichnet, $\alpha$ und $\beta_1$ sind Regressionsparameter, $u_i$ ist der Störterm und $x_1$ ist die unabhängige Variable.
+
+-   Da die Parameter des obigen Modells nicht bekannt sind und nicht beobachtet werden können, müssen diese (auf Basis einer Stichprobe) geschätzt werden.
+
+-   Das OLS- oder KQ-Verfahren ist dabei das gängigste Verfahren.
+
+-   Die Parameter werden dabei so gewählt, dass die Summe der quadrierten Residuen minimiert wird.
+
+## Einfaches lineares Regressionsmodell (grafische Illustration)
+
+<br>
+
+![](images/Bild9.png){fig-align="center"}
+
+## Lineares Regressionsmodell `lm( )`
+
+<br>
+
+-   Die `lm( )` - Funktion aus `base` R ist die wichtigste (nicht die einzige) Funktion um lineare Regressionsmodelle zu schätzen. Die Funktionssyntax lautet `lm(formula = y ~ x1 + x2, data=DataFrame)` oder kurz `lm(y ~ x1 + x2, data=DataFrame)`.
+-   Anwendung auf die Pinguindaten: $body\_mass\_g_i = \alpha + \beta_1 flipper\_length\_mm_i + u_i$
+
+```{webr}
+lm(body_mass_g ~ flipper_length_mm, data=penguins)
+```
+
+<br>
+
+um detaillierte Regressionsergebnisse zu erhalten, kann man die `summary()`-Funktion nutzen.
+
+```{webr}
+summary(lm(body_mass_g ~ flipper_length_mm, data=penguins))
+```
+
+## Grafisch
+
+```{webr}
+penguins |> 
+  ggplot(aes(y=body_mass_g, x=flipper_length_mm)) +
+    geom_point() +
+    geom_smooth(method = 'lm') 
+```
+
+## `lm( )` und in der Pipe
+
+<br>
+
+Die `lm( )`-Funktion kann ohne Probleme in einer Pipe verwendet werden. Hier muss jedoch beachtet werden, dass die erste Stelle in der Funktion die Formel und nicht der Datensatz ist. Dieses Problem kann man umgehen, indem man das Formelobjekt explizit als solches bezeichnet. R setzt dann den Datensatz automatisch an die nächste Stelle im Funktionsaufruf und das ist dann der korrekte Platz.
+
+<br>
+
+```{webr}
+penguins |> 
+  lm(formula = body_mass_g ~ flipper_length_mm) |> 
+  summary()
+```
+
+## Interpretation der Ergebnisse
+
+<br>
+
+```{webr}
+penguins |> 
+  lm(formula = body_mass_g ~ flipper_length_mm) |> 
+  summary()
+```
+<br>
+
+**Interpretation**: Ein zusätzlicher mm Flossenlänge ist im Durchschnitt, bei sonst gleichen Bedingungen, mit einem um 49.69g höheren Gewicht verbunden.
+
+## Multivariates lineares Regressionsmodell
+
+<br>
+
+Die `lm( )`-Funktion kann ohne Probleme Modelle mit vielen erklärenden Variablen verarbeiten.
+
+<br>
+
+```{webr}
+penguins |> 
+  lm(formula = body_mass_g ~ flipper_length_mm + bill_depth_mm) |> 
+  summary()
+```
+
+## Multivariates lineares Regressionsmodell - Kategoriale Variablen
+
+<br>
+
+Sind die Variablen (Spalten des DataFrame) korrekt spezifiziert, kann `lm( )` auch kategoriale Variablen automatisch verarbeiten.
+
+<br>
+
+```{webr}
+penguins |> 
+  lm(formula = body_mass_g ~ flipper_length_mm + bill_depth_mm + species + sex) |> 
+  summary()
+```
+
+## Multivariates lineares Regressionsmodell - Interaktionseffekte
+
+<br>
+
+Sind die Variablen (Spalten des DataFrame) korrekt spezifiziert, kann `lm( )` auch Interaktionseffekte automatisch verarbeiten.
+
+<br>
+
+```{webr}
+penguins |> 
+  lm(formula = body_mass_g ~ flipper_length_mm + bill_depth_mm + species + flipper_length_mm:bill_depth_mm) |> 
+  summary()
+```
+<br>
+
+```{webr}
+penguins |> 
+  lm(formula = body_mass_g ~ flipper_length_mm + bill_depth_mm + species + flipper_length_mm:species) |> 
+  summary()
+```
+
+## Aufgabe 3
+
+<br>
+
+Berechnen Sie anhand der Daten folgendes lineares Regressionsmodell, einmal für alle Pinguine zusammen und dann getrennt für alle drei Pinguinarten. Interpretieren Sie Ihre Ergebnisse. Beachten Sie, dass Sie die Variablen **$body\_mass\_kg$**, **$flipper\_length\_cm$** und **$bill\_depth\_cm$** erst berechnen müssen.
+
+$$ body\_mass\_kg_i = \alpha + \beta_1 flipper\_length\_cm_i + \beta_2 bill\_depth\_cm_i + \beta_3 sex_i + \beta_4 bill\_depth\_cm_i * sex_i + u_i $$
+<br>
+
+
+```{webr}
+
+```
+
+
+## Weitere Modelle
+
+<br>
+
+- R kann natürlich nicht nur lineare Regressionsmodelle berechnen, sondern ist in der Lage (fast) alle existierenden Modellfamilien zu berechnen.
+- Es würde jetzt hier den Rahmen sprengen um alle aufzuführen. Am einfachsten ist es die jeweilige Modellbezeichnung zusammen mit `R` zu googeln.
+- Die Mehrzahl der Modellfunktionen verhält sich aber wie die `lm( )`-Funktion und besteht aus einem Formelobjekt, dem Aufruf des DataFrame und ggf. weiterer Argumente um Verteilungen etc. zu spezifizieren.
+- Das gilt sowohl für frequentistische Modellierung als auch für Bayes-Modellierung.
+
+## Ausblick:
+
+<br>
+
+<br>
+
+<br>
+
+Im nächsten Termin beschäftigen wir uns damit den Output der Tabellen hübsch (druckreif) zu machen und Tabellen und Abbildungen zu vereinheitlichen. 
