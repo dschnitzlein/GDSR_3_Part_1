@@ -46,7 +46,7 @@
     "href": "GDSR_3_Part_1.html#basis-dplyr-funktionen-filter",
     "title": "Datentransformation und Modellierung",
     "section": "Basis dplyr-Funktionen: filter( )",
-    "text": "Basis dplyr-Funktionen: filter( )\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\nfilter( )\nfilter( ) wählt Zeilen auf der Basis des Werts einer Variable aus.\nfilter(penguins, species=='Gentoo')"
+    "text": "Basis dplyr-Funktionen: filter( )\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\nfilter()\nfilter( ) wählt Zeilen auf der Basis des Werts einer Variable aus.\nfilter(penguins, species=='Gentoo')"
   },
   {
     "objectID": "GDSR_3_Part_1.html#häufige-fehler",
@@ -60,28 +60,28 @@
     "href": "GDSR_3_Part_1.html#basis-dplyr-funktionen-arrange",
     "title": "Datentransformation und Modellierung",
     "section": "Basis dplyr-Funktionen: arrange( )",
-    "text": "Basis dplyr-Funktionen: arrange( )\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\narrange( )\narrange( ) ändert die Reihenfolge der Zeilen auf Basis des Wertes einer Variable.\narrange(penguins, body_mass_g)\narrange(penguins, desc(body_mass_g))"
+    "text": "Basis dplyr-Funktionen: arrange( )\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\narrange()\narrange( ) ändert die Reihenfolge der Zeilen auf Basis des Wertes einer Variable.\narrange(penguins, body_mass_g)\narrange(penguins, desc(body_mass_g))"
   },
   {
     "objectID": "GDSR_3_Part_1.html#basis-dplyr-funktionen-distinct",
     "href": "GDSR_3_Part_1.html#basis-dplyr-funktionen-distinct",
     "title": "Datentransformation und Modellierung",
     "section": "Basis dplyr-Funktionen: distinct( )",
-    "text": "Basis dplyr-Funktionen: distinct( )\n\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\ndistinct( )\ndistinct( ) findet alle eindeutigen Zeilen (eindeutige Kombination von Variablen) in einem Datensatz.\ndistinct(penguins, species, island)"
+    "text": "Basis dplyr-Funktionen: distinct( )\n\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\ndistinct()\ndistinct( ) findet alle eindeutigen Zeilen (eindeutige Kombination von Variablen) in einem Datensatz.\ndistinct(penguins, species, island)"
   },
   {
     "objectID": "GDSR_3_Part_1.html#basis-dplyr-funktionen-count",
     "href": "GDSR_3_Part_1.html#basis-dplyr-funktionen-count",
     "title": "Datentransformation und Modellierung",
     "section": "Basis dplyr-Funktionen: count( )",
-    "text": "Basis dplyr-Funktionen: count( )\n\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\ncount( )\ncount( ) zählt alle eindeutigen Zeilen (eindeutige Kombination von Variablen) in einem Datensatz.\ncount(penguins, species, island)"
+    "text": "Basis dplyr-Funktionen: count( )\n\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\ncount()\ncount( ) zählt alle eindeutigen Zeilen (eindeutige Kombination von Variablen) in einem Datensatz.\ncount(penguins, species, island)"
   },
   {
     "objectID": "GDSR_3_Part_1.html#basis-dplyr-funktionen-mutate",
     "href": "GDSR_3_Part_1.html#basis-dplyr-funktionen-mutate",
     "title": "Datentransformation und Modellierung",
     "section": "Basis dplyr-Funktionen: mutate( )",
-    "text": "Basis dplyr-Funktionen: mutate( )\n\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\nmutate( )\nmutate( ) erstellt neue Variablen (Spalten) die aus den bestehenden berechnet werden.\nmutate(penguins, body_mass_kg=body_mass_g/1000)"
+    "text": "Basis dplyr-Funktionen: mutate( )\n\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\nmutate()\nmutate( ) erstellt neue Variablen (Spalten) die aus den bestehenden berechnet werden.\nmutate(penguins, body_mass_kg=body_mass_g/1000)"
   },
   {
     "objectID": "GDSR_3_Part_1.html#weitere-mutate---beispiele",
@@ -95,7 +95,7 @@
     "href": "GDSR_3_Part_1.html#basis-dplyr-funktionen-select",
     "title": "Datentransformation und Modellierung",
     "section": "Basis dplyr-Funktionen: select( )",
-    "text": "Basis dplyr-Funktionen: select( )\n\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\nselect( )\nselect( ) erlaubt es einzelne Variablen aus einem DataFrame/Tibble auszuwählen.\nselect(penguins, species, body_mass_g)"
+    "text": "Basis dplyr-Funktionen: select( )\n\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\nselect()\nselect( ) erlaubt es einzelne Variablen aus einem DataFrame/Tibble auszuwählen.\nselect(penguins, species, body_mass_g)"
   },
   {
     "objectID": "GDSR_3_Part_1.html#select-kennt-viele-hilfsfunktionen-auswahl-1",
@@ -109,21 +109,21 @@
     "href": "GDSR_3_Part_1.html#select-kennt-viele-hilfsfunktionen-auswahl-2",
     "title": "Datentransformation und Modellierung",
     "section": "select( ) kennt viele Hilfsfunktionen (Auswahl #2)",
-    "text": "select( ) kennt viele Hilfsfunktionen (Auswahl #2)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMehr Funktionen finden Sie unter ?select."
+    "text": "select( ) kennt viele Hilfsfunktionen (Auswahl #2)\n\n\n\n\n\n\n\n\n\n\nMehr Funktionen finden Sie unter ?select."
   },
   {
     "objectID": "GDSR_3_Part_1.html#basis-dplyr-funktionen-rename",
     "href": "GDSR_3_Part_1.html#basis-dplyr-funktionen-rename",
     "title": "Datentransformation und Modellierung",
     "section": "Basis dplyr-Funktionen: rename( )",
-    "text": "Basis dplyr-Funktionen: rename( )\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\nrename( )\nrename( ) erlaubt es einzelne Variablen umzubenennen.\nrename(penguins, weight=body_mass_g)"
+    "text": "Basis dplyr-Funktionen: rename( )\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\nrename()\nrename( ) erlaubt es einzelne Variablen umzubenennen.\nrename(penguins, weight=body_mass_g)"
   },
   {
     "objectID": "GDSR_3_Part_1.html#basis-dplyr-funktionen-relocate",
     "href": "GDSR_3_Part_1.html#basis-dplyr-funktionen-relocate",
     "title": "Datentransformation und Modellierung",
     "section": "Basis dplyr-Funktionen: relocate( )",
-    "text": "Basis dplyr-Funktionen: relocate( )\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\nrelocate( )\nrelocate( ) erlaubt es einzelne Variablen im Datensatz zu verschieben. Ohne Zusatz werden die Variablen nach vorne verschoben. Genauere Steuerung ist mit .before und .after möglich.\nrelocate(penguins, species)"
+    "text": "Basis dplyr-Funktionen: relocate( )\n\n\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nBeispiel\n\n\n\n\nrelocate()\nrelocate( ) erlaubt es einzelne Variablen im Datensatz zu verschieben. Ohne Zusatz werden die Variablen nach vorne verschoben. Genauere Steuerung ist mit .before und .after möglich.\nrelocate(penguins, species)"
   },
   {
     "objectID": "GDSR_3_Part_1.html#aufgabe-1",
@@ -137,7 +137,7 @@
     "href": "GDSR_3_Part_1.html#die-entwicklung-des-pipe-operators",
     "title": "Datentransformation und Modellierung",
     "section": "Die Entwicklung des pipe-Operators",
-    "text": "Die Entwicklung des pipe-Operators\n\n\n\nIm Januar 2012 gab es erste Diskussionen auf stackoverflow über die Entwicklung eines pipe-Operators für R.\nDaraus haben sich verschiedene Lösungen entwickelt u.a. im Paket magrittr mit folgendem Oprator %&gt;%. Technisch war das magrittr Paket nie Teil des Kern-tidyverse, aber eng mit diesem verbunden und alle Pakete unterstützten die magrittr Pipe.\nEin pipe-Operator ermöglicht es verschiedene Funktionen zu kombinieren und auf das selbe Objekt anzuwenden.\nWie jede Neuerung wurde die Idee eines pipe-Operator (für R) bzw. einer Befehlspipeline zuerst kontrovers diskutiert, hat sich dann aber als sehr nützlich herausgestellt und wurde extrem beliebt (auch außerhalb der tidyverse Pakete).\nMit R-Version 4.1.0 (Mai 2021) hat R einen pipe-Operator |&gt; in base R eingeführt, der weitgehend identisch zu der magrittr Variante funktioniert.\nVorteil: Jetzt können auch Pakete, die sich nicht auf magrittr berufen, Befehlspipelines nutzen. Die magrittr Version kann weiter verwendet werden, für fast alle Anwendungsfälle ist es aber sinnvoller die neue einheitliche base Version zu verwenden.\nAnmerkung: Wenn Sie in Foren etc. Lösungen mit %&gt;% finden, können Sie diese normalerweise weiterhin verwenden und einfach %&gt;% durch |&gt; ersetzen."
+    "text": "Die Entwicklung des pipe-Operators\n\n\n\nIm Januar 2012 gab es erste Diskussionen auf stackoverflow über die Entwicklung eines pipe-Operators für R.\nDaraus haben sich verschiedene Lösungen entwickelt u.a. im Paket magrittr mit folgendem Oprator %&gt;%. Technisch war das magrittr Paket nie (oder doch?) Teil des Kern-tidyverse, aber eng mit diesem verbunden und alle Pakete unterstützten die magrittr Pipe.\nEin pipe-Operator ermöglicht es verschiedene Funktionen zu kombinieren und auf das selbe Objekt anzuwenden.\nWie jede Neuerung wurde die Idee eines pipe-Operator (für R) bzw. einer Befehlspipeline zuerst kontrovers diskutiert, hat sich dann aber als sehr nützlich herausgestellt und wurde extrem beliebt (auch außerhalb der tidyverse Pakete).\nMit R-Version 4.1.0 (Mai 2021) hat R einen pipe-Operator |&gt; in base R eingeführt, der weitgehend identisch zu der magrittr Variante funktioniert.\nVorteil: Jetzt können auch Pakete, die sich nicht auf magrittr berufen, Befehlspipelines nutzen. Die magrittr Version kann weiter verwendet werden, für fast alle Anwendungsfälle ist es aber sinnvoller die neue einheitliche base Version zu verwenden.\nAnmerkung: Wenn Sie in Foren etc. Lösungen mit %&gt;% finden, können Sie diese normalerweise weiterhin verwenden und einfach %&gt;% durch |&gt; ersetzen."
   },
   {
     "objectID": "GDSR_3_Part_1.html#was-kann-der-pipe-operator",
@@ -235,7 +235,7 @@
     "href": "GDSR_3_Part_1.html#einfaches-lineares-regressionsmodell-wdh.",
     "title": "Datentransformation und Modellierung",
     "section": "Einfaches lineares Regressionsmodell (Wdh.)",
-    "text": "Einfaches lineares Regressionsmodell (Wdh.)\n\n\nDie lineare Regression zielt darauf ab, eine lineare Beziehung zwischen einer abhängigen Variable und einer unabhängigen Variablen zu beschreiben, unter der Annahme, dass in der Population eine lineare Beziehung zwischen den Variablen y und x besteht, die wie folgt spezifiziert werden kann:\n\\[\ny_i = \\alpha + \\beta_1 x_1 + u_i\n\\]\n\\(y_i\\) wird dabei als abhängige Variable bezeichnet, \\(\\alpha\\) und \\(\\beta_1\\) sind Regressionsparameter, \\(u_i\\) ist der Störterm und \\(x_1\\) ist die unabhängige Variable.\nDa die Parameter des obigen Modells nicht bekannt sind und nicht beobachtet werden können, müssen diese (auf Basis einer Stichprobe) geschätzt werden.\nDas OLS- oder KQ-Verfahren ist dabei das gängigste Verfahren.\nDie Parameter werden dabei so gewählt, dass die Summe der quadrierten Residuen minimiert wird."
+    "text": "Einfaches lineares Regressionsmodell (Wdh.)\n\n\nDie lineare Regression zielt darauf ab, eine lineare Beziehung zwischen einer abhängigen Variable und einer unabhängigen Variablen zu beschreiben, unter der Annahme, dass in der Population eine lineare Beziehung zwischen den Variablen \\(y\\) und \\(x_1\\) besteht, die wie folgt spezifiziert werden kann:\n\\[\ny_i = \\alpha + \\beta_1 x_{1,i} + u_i\n\\]\n\\(y_i\\) wird dabei als abhängige Variable bezeichnet, \\(\\alpha\\) und \\(\\beta_1\\) sind Regressionsparameter, \\(u_i\\) ist der Störterm und \\(x_1\\) ist die unabhängige Variable.\nDa die Parameter des obigen Modells nicht bekannt sind und nicht beobachtet werden können, müssen diese (auf Basis einer Stichprobe) geschätzt werden.\nDas OLS- oder KQ-Verfahren ist dabei das gängigste Verfahren.\nDie Parameter werden dabei so gewählt, dass die Summe der quadrierten Residuen minimiert wird."
   },
   {
     "objectID": "GDSR_3_Part_1.html#einfaches-lineares-regressionsmodell-grafische-illustration",
@@ -249,7 +249,7 @@
     "href": "GDSR_3_Part_1.html#lineares-regressionsmodell-lm",
     "title": "Datentransformation und Modellierung",
     "section": "Lineares Regressionsmodell lm( )",
-    "text": "Lineares Regressionsmodell lm( )\n\n\nDie lm( ) - Funktion aus base R ist die wichtigste (nicht die einzige) Funktion um lineare Regressionsmodelle zu schätzen. Die Funktionssyntax lautet lm(formula = y ~ x1 + x2, data=DataFrame) oder kurz lm(y ~ x1 + x2, data=DataFrame).\nAnwendung auf die Pinguindaten: \\(body\\_mass\\_g_i = \\alpha + \\beta_1 flipper\\_length\\_mm_i + u_i\\)\n\n\n\n\n\n\n\n\n\n\num detaillierte Regressionsergebnisse zu erhalten, kann man die summary()-Funktion nutzen."
+    "text": "Lineares Regressionsmodell lm( )\n\n\nDie lm( ) - Funktion aus base R (genauer stats aus base R) ist die wichtigste (nicht die einzige) Funktion um lineare Regressionsmodelle zu schätzen. Die Funktionssyntax lautet lm(formula = y ~ x1 + x2, data=DataFrame) oder kurz lm(y ~ x1 + x2, data=DataFrame).\nAnwendung auf die Pinguindaten: \\(body\\_mass\\_g_i = \\alpha + \\beta_1 flipper\\_length\\_mm_i + u_i\\)\n\n\n\n\n\n\n\n\n\n\num detaillierte Regressionsergebnisse zu erhalten, kann man die summary()-Funktion nutzen."
   },
   {
     "objectID": "GDSR_3_Part_1.html#grafisch",
@@ -305,7 +305,7 @@
     "href": "GDSR_3_Part_1.html#weitere-modelle",
     "title": "Datentransformation und Modellierung",
     "section": "Weitere Modelle",
-    "text": "Weitere Modelle\n\n\nR kann natürlich nicht nur lineare Regressionsmodelle berechnen, sondern ist in der Lage (fast) alle existierenden Modellfamilien zu berechnen.\nEs würde jetzt hier den Rahmen sprengen um alle aufzuführen. Am einfachsten ist es die jeweilige Modellbezeichnung zusammen mit R zu googeln.\nDie Mehrzahl der Modellfunktionen verhält sich aber wie die lm( )-Funktion und besteht aus einem Formelobjekt, dem Aufruf des DataFrame und ggf. weiterer Argumente um Verteilungen etc. zu spezifizieren.\nDas gilt sowohl für frequentistische Modellierung als auch für Bayes-Modellierung."
+    "text": "Weitere Modelle\n\n\nR kann natürlich nicht nur lineare Regressionsmodelle berechnen, sondern ist in der Lage (fast) alle existierenden Modellfamilien zu berechnen.\nEs würde jetzt hier den Rahmen sprengen um alle aufzuführen. Am einfachsten ist es, die jeweilige Modellbezeichnung zusammen mit R zu googeln.\nDie Mehrzahl der Modellfunktionen haben eine ähnliche Syntax wie die lm( )-Funktion und bestehen aus einem Formelobjekt, dem Aufruf des DataFrame und ggf. weiterer Argumente um Verteilungen etc. zu spezifizieren.\nDas gilt sowohl für frequentistische Modellierung als auch für Bayes-Modellierung."
   },
   {
     "objectID": "GDSR_3_Part_1.html#ausblick",
