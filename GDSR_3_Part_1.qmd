@@ -513,9 +513,9 @@ Es gibt drei miteinander zusammenhängende Regeln, die einen Datensatz zu tidy d
 <br>
 
 ::: r-stack
-![](images/Bild6.png){.fragment fig-align="center"}
+![](images/Bild6.png){.fragment fig-align="center" width="900"}
 
-![](images/Bild6_neu.png){.fragment fig-align="center"}
+![](images/Bild6_neu.png){.fragment fig-align="center" width="900"}
 :::
 
 ## Tidy oder nicht tidy?
@@ -523,9 +523,9 @@ Es gibt drei miteinander zusammenhängende Regeln, die einen Datensatz zu tidy d
 <br>
 
 ::: r-stack
-![](images/Bild7.png){.fragment fig-align="center"}
+![](images/Bild7.png){.fragment fig-align="center" width="900"}
 
-![](images/Bild7_neu.png){.fragment fig-align="center"}
+![](images/Bild7_neu.png){.fragment fig-align="center" width="900"}
 :::
 
 ## Tidy oder nicht tidy?
@@ -533,9 +533,9 @@ Es gibt drei miteinander zusammenhängende Regeln, die einen Datensatz zu tidy d
 <br>
 
 ::: r-stack
-![](images/Bild8.png){.fragment fig-align="center"}
+![](images/Bild8.png){.fragment fig-align="center" width="900"}
 
-![](images/Bild8_neu.png){.fragment fig-align="center"}
+![](images/Bild8_neu.png){.fragment fig-align="center" width="900"}
 :::
 
 # Statistische Modellierung
