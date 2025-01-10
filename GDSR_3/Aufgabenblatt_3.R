@@ -23,6 +23,7 @@ Fluege_df |>
 # b)
 
 Fluege_df |> 
+  filter(dep_delay > 0) |>
   group_by(origin) |> 
   summarize(
     MW=mean(dep_delay),
@@ -79,7 +80,9 @@ Fluege_df |>
   group_by(origin) |> 
   summarize(n=n())
 
+
 airportliste <- c('EWR', 'JFK', 'LGA')
+
 
 for (i in airportliste) {
   Fluege_df |> 
@@ -89,4 +92,32 @@ for (i in airportliste) {
     summary() |> 
     print()
 }
+
+### aus der Hausaufgabe
+
+# Teilaufgabe g)
+# Ermitteln der drei Airlines mit den meisten Flügen
+
+Fluege_df |> 
+  group_by(carrier) |> 
+  summarize(n=n()) |> 
+  arrange(desc(n))
+
+## UA, B6 und EV
+
+Fluege_df |> 
+  filter(carrier=='UA') |> 
+  lm(formula = air_time ~ distance + origin) |> 
+  summary()
+
+Fluege_df |> 
+  filter(carrier=='B6') |> 
+  lm(formula = air_time ~ distance + origin) |> 
+  summary()
+
+Fluege_df |> 
+  filter(carrier=='EV') |> 
+  lm(formula = air_time ~ distance + origin) |> 
+  summary()
+
 
